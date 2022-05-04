@@ -1,0 +1,13 @@
+# https://blog.markvincze.com/download-artifacts-from-a-latest-github-release-in-sh-and-powershell/
+# The article is outdated (but it works)
+# GitHub provides an API endpoint https://api.github.com/repos/${GITHUB_ACCOUNT_PROJECT}/releases/latest
+# The API provides a lot more information
+
+function get_latest_version_from_github () {
+    GITHUB_ACCOUNT_PROJECT="$1"
+    LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' https://github.com/${GITHUB_ACCOUNT_PROJECT}/releases/latest)
+    LATEST_VERSION=$(echo $LATEST_RELEASE | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/')
+    ARTIFACT_URL="https://github.com/${GITHUB_ACCOUNT_PROJECT}/releases/download/$LATEST_VERSION/"
+
+    echo ${LATEST_VERSION}
+}

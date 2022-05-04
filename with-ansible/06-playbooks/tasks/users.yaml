@@ -1,0 +1,22 @@
+- name: Create ansible user
+  become: true
+  user:
+    name: ansible
+    uid: 900
+- name: Enable sudo for ansible user
+  become: true
+  ansible.builtin.copy:
+    src: files/sudoers_ansible
+    dest: /etc/sudoers.d/ansible
+    owner: root
+    group: root
+    mode: 0400
+- name: Enable sudo for {{ usuario }} user
+  become: true
+  ansible.builtin.copy:
+    src: files/sudoers_{{ usuario }}
+    dest: /etc/sudoers.d/{{ usuario }}
+    owner: root
+    group: root
+    mode: 0400
+

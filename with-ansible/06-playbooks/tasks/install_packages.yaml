@@ -1,0 +1,11 @@
+- name: Install new packages
+  become: yes
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - git
+  - jq
+  - tmux
+  - tree
+  - vim

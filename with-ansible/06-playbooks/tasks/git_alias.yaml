@@ -1,0 +1,31 @@
+- name: Alias for git commit
+  community.general.git_config:
+    name: alias.ci
+    scope: global
+    value: commit
+- name: Alias for git checkout
+  community.general.git_config:
+    name: alias.co
+    scope: global
+    value: checkout
+- name: Alias for git branch
+  community.general.git_config:
+    name: alias.br
+    scope: global
+    value: branch
+- name: Alias for git status
+  community.general.git_config:
+    name: alias.st
+    scope: global
+    value: status
+- name: Alias for git log --one-line
+  community.general.git_config:
+    name: alias.l1
+    scope: global
+    # Reference: https://ma.ttias.be/pretty-git-log-in-one-line/
+    value: "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+- name: Alias for git restore --staged
+  community.general.git_config:
+    name: alias.unstage
+    scope: global
+    value: "restore --staged"

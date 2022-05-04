@@ -1,0 +1,29 @@
+- name: Install prerequisites for Visual Studio Code
+  become: yes
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - apt-transport-https
+  - ca-certificates
+
+- name: Install Microsoft Key
+  become: yes
+  environment:
+    https_proxy: "{{ lookup('env', 'https_proxy') }}"
+  ansible.builtin.apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Add Visual Studio Code repo to APT
+  become: yes
+  apt_repository:
+    repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/code stable main'
+    filename: vscode
+    state: present
+
+- name: Install Visual Studio Code using APT
+  become: yes
+  ansible.builtin.apt:
+    name: code
+    state: present

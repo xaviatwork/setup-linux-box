@@ -1,0 +1,23 @@
+- hosts: localhost
+  vars:
+    usuario: xavi
+    zscalercert: /usr/local/share/ca-certificates/zscaler-root-certificate.crt
+  environment:
+    https_proxy: "{{ lookup('env', 'https_proxy') }}"
+  pre_tasks:
+  - name: Update repositories
+    become: yes
+    ansible.builtin.apt:
+      update_cache: yes
+      autoremove: yes
+    changed_when: False
+  
+  tasks:
+  - include_tasks: tasks/system_update.yaml
+  - include_tasks: tasks/users.yaml
+  - include_tasks: tasks/install_packages.yaml
+  - include_tasks: tasks/repos_folder.yaml
+  - include_tasks: tasks/git_alias.yaml
+  - include_tasks: tasks/vscode.yaml
+  - include_tasks: tasks/xfce4_terminal.yaml
+  - include_tasks: tasks/bitwarden_cli.yaml

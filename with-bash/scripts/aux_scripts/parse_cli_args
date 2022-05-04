@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Docs and reference
+# Credit: Drew Stokes, https://medium.com/@Drew_Stokes/bash-argument-parsing-54f3b81a6a8f
+# Explanation of ${2:0:1}, https://unix.stackexchange.com/a/275651 by heemayl
+# Explanation of "-n": Check if the length of a string is nonzero
+
+function parse_cli_args {
+  PARAMS=""
+
+  while (("$#")); do
+    case "$1" in
+    --unset-proxy-env)
+      SET_HTTP_PROXY="false"
+      shift
+      ;;
+    --unset-proxy-apt)
+      SET_APT_PROXY="false"
+      shift
+      ;;
+    --unset-proxy-all)
+      SET_HTTP_PROXY="false"
+      SET_APT_PROXY="false"
+      shift
+      ;;
+    -* | --*=) # Unsupported flags
+      echo "Error: Unsupported flag $1" >&2
+      exit 1
+      ;;
+    *) # Preserve positional arguments
+      PARAMS="$PARAMS $1"
+      shift
+      ;;
+    esac
+  done
+
+  # Set positional arguments in their proper place
+  eval set -- "$PARAMS"
+}
+
+parse_cli_args "$@"
