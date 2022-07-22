@@ -19,5 +19,7 @@
   - include_tasks: tasks/repos_folder.yaml
   - include_tasks: tasks/git_alias.yaml
   - include_tasks: tasks/vscode.yaml
-  - include_tasks: tasks/xfce4_terminal.yaml
-  - include_tasks: tasks/bitwarden_cli.yaml
+  - include_tasks: tasks/gcloud.yaml
+  - include_tasks: tasks/vscode.yaml
+  - include_tasks: tasks/terraform.yaml
+#  - include_tasks: tasks/bitwarden_cli.yaml

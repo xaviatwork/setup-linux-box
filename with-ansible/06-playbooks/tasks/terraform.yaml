@@ -1,0 +1,30 @@
+- name: Install prerequisites for Terraform
+  become: yes
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - gpg
+
+- name: Install Terraform GPG Key
+  become: yes
+  environment:
+    https_proxy: "{{ lookup('env', 'https_proxy') }}"
+  ansible.builtin.apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    keyring: /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    state: present
+
+- name: Add Terraform repo to APT
+  become: yes
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com focal main"
+    filename: hashicorp.terraform
+    state: present
+
+- name: Install Terraform using APT
+  become: yes
+  ansible.builtin.apt:
+    update_cache: yes
+    name: terraform
+    state: present
