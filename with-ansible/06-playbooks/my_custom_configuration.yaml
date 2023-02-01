@@ -13,7 +13,7 @@
     changed_when: False
   
   tasks:
-  - include_tasks: tasks/system_update.yaml
+#  - include_tasks: tasks/system_update.yaml
   - include_tasks: tasks/users.yaml
   - include_tasks: tasks/install_packages.yaml
   - include_tasks: tasks/repos_folder.yaml
