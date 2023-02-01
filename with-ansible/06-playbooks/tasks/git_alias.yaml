@@ -23,9 +23,14 @@
     name: alias.l1
     scope: global
     # Reference: https://ma.ttias.be/pretty-git-log-in-one-line/
-    value: "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+    value: "log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 - name: Alias for git restore --staged
   community.general.git_config:
     name: alias.unstage
     scope: global
     value: "restore --staged"
+- name: Alias for git switch
+  community.general.git_config:
+    name: alias.sw
+    scope: global
+    value: "switch"
