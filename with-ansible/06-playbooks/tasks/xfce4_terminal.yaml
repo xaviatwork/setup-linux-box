@@ -1,5 +1,0 @@
-- name: XFCE4 Terminal - Turn background opaque
-  ansible.builtin.lineinfile:
-    path: "/home/{{ usuario }}/.config/xfce4/terminal/terminalrc"
-    regexp: '^BackgroundDarkness='
-    line: BackgroundDarkness=1.0

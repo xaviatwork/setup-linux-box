@@ -1,6 +1,0 @@
-- name: Update operating system
-  become: true
-  ansible.builtin.apt:
-    name: "*"
-    state: latest
-    autoremove: yes

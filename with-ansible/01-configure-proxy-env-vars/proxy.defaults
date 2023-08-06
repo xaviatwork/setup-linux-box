@@ -1,6 +1,0 @@
-proxyProtocol=http
-proxyURL=
-proxyPort=
-requiresAuthentication=true
-proxyUsername=
-no_proxy='.local,.internal'
