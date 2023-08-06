@@ -17,13 +17,11 @@ fi
 echo "Icons: VSCode Icons"
 code --install-extension vscode-icons-team.vscode-icons
 
-current_icons=$(jq '."workbench.colorIcon' ${vscode_user_settings_file}) 
-if [[ ${current_icons} == "null" || ${current_theme} != "vscode-icons" ]];then
-	# jq '."workbench.colorTheme"=""' ${vscode_user_settings_file} > ${vscode_user_settings_file}.tmp && mv  ${vscode_user_settings_file}.tmp ${vscode_user_settings_file}
+current_icons=$(jq '."workbench.iconTheme' ${vscode_user_settings_file}) 
+if [[ ${current_icons} == "null" || ${current_icons} != "vscode-icons" ]];then
+	jq '."workbench.iconTheme"=""' ${vscode_user_settings_file} > ${vscode_user_settings_file}.tmp && mv  ${vscode_user_settings_file}.tmp ${vscode_user_settings_file}
 fi
-if [[ $(jq '."workbench.iconTheme"' ${vscode_user_settings_file}) == "null" ]];then
-	jq '."workbench.iconTheme"="vscode-icons"' ${vscode_user_settings_file}
-fi
+
 echo "Extension: Remote Development"
 echo " - Remote SSH"
 echo " - Remote Tunnels"
