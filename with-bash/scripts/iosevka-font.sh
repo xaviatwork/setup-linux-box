@@ -42,5 +42,5 @@ then
 else
     curl -JLO $fontIosevkaTermURL
 fi
-# install_font
+install_font
 update_vscode_settings
